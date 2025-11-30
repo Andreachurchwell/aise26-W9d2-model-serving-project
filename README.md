@@ -1,5 +1,5 @@
-AISE 26 • Week 9 Day 2 — Mini Model Serving Project
-FastAPI • Batch Inference • Prometheus • Docker
+# AISE 26 • Week 9 Day 2 — Mini Model Serving Project
+## FastAPI • Batch Inference • Prometheus • Docker
 <p align="center"> <img src="https://img.shields.io/badge/FastAPI-Model%20Serving-teal?style=for-the-badge"/> <img src="https://img.shields.io/badge/Batch-Inference-blueviolet?style=for-the-badge"/> <img src="https://img.shields.io/badge/Monitoring-Prometheus-orange?style=for-the-badge"/> <img src="https://img.shields.io/badge/Docker-Ready-success?style=for-the-badge"/> </p>
 
 ## 🌟 Project Snapshot
@@ -68,37 +68,43 @@ uvicorn app.main:app --reload
 ```
 
 Now your endpoints are live:
+```
 http://localhost:8000
+```
 
 🔥 API Endpoints
 ✔️ Health Check
-
+```
 GET /health
 
 {"status": "ok"}
-
+```
 ✔️ Prediction
-
+```
 POST /predict
-
+```
 Input
+```
 { "x1": 1.0, "x2": 2.0 }
-
+```
+```
 Output
 {
   "score": 1.0,
   "model_version": "v1.0"
 }
+```
 
 Curl Example
+```
 curl -X POST http://localhost:8000/predict \
   -H "Content-Type: application/json" \
   -d "{\"x1\":1.0,\"x2\":2.0}"
-
+```
 ✔️ Prometheus Metrics
-
+```
 GET /metrics
-
+```
 Your metrics include:
 
 request counter
@@ -110,32 +116,35 @@ python process memory
 GC stats
 
 A screenshot is included:
-
+```
 screenshots/metrics.png
-
+```
 📁 Batch Inference
 
 Run model predictions on a CSV file:
-
+```
 python batch_infer.py data/input.csv data/predictions.csv
-
+```
 Output:
 
 A CSV with the original rows plus a prediction column.
 
 🐳 Docker Setup
 Build the image
+```
 docker build -t model-server:v1 .
-
+```
 Run the container
+```
 docker run -p 8000:8000 model-server:v1
-
+```
 
 Now test inside Docker:
-
+```
 curl http://localhost:8000/health
+```
 
-📌 Assignment Checklist
+## 📌 Assignment Checklist
 Requirement	Status
 FastAPI app works	✔️
 /predict returns score + version	✔️
